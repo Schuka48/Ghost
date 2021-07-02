@@ -17,6 +17,8 @@
 #include <QString>
 #include <QWidget>
 #include <QPair>
+#include <QRegExp>
+#include <QRegExpValidator>
 
 #include "Network.h"
 #include "VPC.h"
@@ -104,8 +106,10 @@ private:
 
     QString get_network_address(QString ip_address);
 
-//    QString ip_addr_regexp = "([1-9]|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){3}\/\d+";
+    QString ip_reg_2 = "([1-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}\\/\\d+";
 
+    QString ip_reg = "(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])";
+    QString name_reg = "[a-zA-Z]{1}[a-zA-Z_1-9]*";
 };
 
 #endif // SECONDWINDOW_H

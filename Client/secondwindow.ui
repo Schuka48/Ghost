@@ -83,7 +83,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -603,7 +603,7 @@
               <item>
                <widget class="QLineEdit" name="lineEdit_2">
                 <property name="placeholderText">
-                 <string>192.168.0.1/24</string>
+                 <string>192.168.0.0/24</string>
                 </property>
                </widget>
               </item>

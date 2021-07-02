@@ -65,6 +65,23 @@ SecondWindow::SecondWindow(QString server_ip, QWidget *parent) :
 
     is_saved = true;
     is_save_as = false;
+
+    QRegExp ip_regular("^" + ip_reg
+                    + "\\." + ip_reg
+                    + "\\." + ip_reg
+                    + "\\." + ip_reg
+                    + "/\\d{1,2}" "$");
+    QRegExpValidator* ipValidator = new QRegExpValidator(ip_regular, this);
+    ui->ip_address_Edit->setValidator(ipValidator);
+    ui->ip_address_Edit_2->setValidator(ipValidator);
+    ui->lineEdit_2->setValidator(ipValidator);
+
+    QRegExp name_regular(name_reg);
+    QRegExpValidator* nameValidator = new QRegExpValidator(name_regular, this);
+    ui->lineEdit->setValidator(nameValidator);
+    ui->lineEdit_3->setValidator(nameValidator);
+    ui->first_int->setValidator(nameValidator);
+    ui->second_int->setValidator(nameValidator);
 }
 
 SecondWindow::~SecondWindow()
