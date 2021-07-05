@@ -405,14 +405,26 @@ void SecondWindow::on_pushDesign_Route_clicked()
             }
         }
         else {
-            Route route(ui->lineEdit_2->text(), network->get_network_bridge(), network, nullptr ,&network->get_connected_pc().last());
-            network->push_back_route(route);
-            QJsonObject jObj;
-            jObj.insert("command", "create");
-            jObj.insert("stack", "route");
-            jObj.insert("route_params", network->get_routes().last().toObject());
-            data = QJsonDocument(jObj).toJson();
-            socket->write(data);
+            if(ui->comboBox_6->currentText() == network->get_network_bridge()->get_bridge_name()) {
+                Route route(ui->lineEdit_2->text(), network->get_network_bridge(), network, nullptr ,&network->get_connected_pc().last());
+                network->push_back_route(route);
+                QJsonObject jObj;
+                jObj.insert("command", "create");
+                jObj.insert("stack", "route");
+                jObj.insert("route_params", network->get_routes().last().toObject());
+                data = QJsonDocument(jObj).toJson();
+                socket->write(data);
+            }
+            else {
+                Route route(ui->lineEdit_2->text(), &network->get_interface(ui->comboBox_6->currentText()), network, nullptr ,&network->get_connected_pc().last());
+                network->push_back_route(route);
+                QJsonObject jObj;
+                jObj.insert("command", "create");
+                jObj.insert("stack", "route");
+                jObj.insert("route_params", network->get_routes().last().toObject());
+                data = QJsonDocument(jObj).toJson();
+                socket->write(data);
+            }
         }
         ui->comboBox_4->setCurrentIndex(-1);
         ui->comboBox_6->setCurrentIndex(-1);
