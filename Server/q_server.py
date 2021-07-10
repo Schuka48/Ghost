@@ -404,7 +404,13 @@ def start_server():
     server.listen(1)
 
     while not closed:
-        conn, addr = server.accept()
+        try:
+            conn, addr = server.accept()
+        except KeyboardInterrup:
+            server.close()
+            print("[CLOSE] This server has been closed ...")
+            break
+
         clients_list.append(addr)
         clients_now.append(addr)
         thread = threading.Thread(target=handle_client, args=(conn, addr))
